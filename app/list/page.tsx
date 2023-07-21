@@ -6,7 +6,7 @@ export default function list() {
       <h4>
         {product.map((v, i) => {
           return (
-            <div>
+            <div key={i}>
               <h4>{v}</h4>
             </div>
           );
