@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button, Card, Grid, Text, useTheme } from "@nextui-org/react";
 
 export default function Page() {
-  const { theme } = useTheme();
   return (
     <div>
       <h1>Hello, Next.js!</h1>
