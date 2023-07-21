@@ -1,3 +1,17 @@
 export default function list() {
-  return <div>상품목록</div>;
+  let product = ["tomatoes", "pasta", "potato"];
+
+  return (
+    <div>
+      <h4>
+        {product.map((v, i) => {
+          return (
+            <div>
+              <h4>{v}</h4>
+            </div>
+          );
+        })}
+      </h4>
+    </div>
+  );
 }
