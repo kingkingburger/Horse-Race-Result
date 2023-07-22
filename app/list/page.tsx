@@ -1,5 +1,5 @@
 export default function list() {
-  let product = ["tomatoes", "pasta", "potato"];
+  let product = ["tomatoes", "pasta", "potato", "love"];
 
   return (
     <div>
@@ -8,6 +8,7 @@ export default function list() {
           return (
             <div key={i}>
               <h4>{v}</h4>
+              <img src={`/${i + 1}.webp`} alt="태스트이미지" />
             </div>
           );
         })}
