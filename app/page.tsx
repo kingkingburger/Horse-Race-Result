@@ -1,30 +1,81 @@
 "use client";
-import Example from "@/app/custom/page";
 import React from "react";
-import Link from "next/link";
-import { Button, Card, Grid, Text, useTheme } from "@nextui-org/react";
+import { Button, Card, Col, Grid, Row, Text } from "@nextui-org/react";
 
 export default function Page() {
+  let horse = ["1", "2", "3", "4"];
   return (
     <div>
-      <h1>Hello, Next.js!</h1>
-      <Link href="/custom">
-        <div>custom</div>
-      </Link>
-      <Link href="/about">
-        <div>about</div>
-      </Link>
-      <Button>Click me</Button>
-      <Card>
-        <Card.Body>
-          <Text>Default card. (shadow)</Text>
-        </Card.Body>
-      </Card>
-      <Card variant="bordered">
-        <Card.Body>
-          <Text>Bordered card.</Text>
-        </Card.Body>
-      </Card>
+      <Grid.Container gap={2}>
+        {horse.map((v, i) => {
+          return (
+            <Grid xs={4} key={i}>
+              <Card css={{ w: "100%", h: "400px" }}>
+                <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                  <Col>
+                    <Text
+                      size={12}
+                      weight="bold"
+                      transform="uppercase"
+                      color="#ffffffAA"
+                    >
+                      New
+                    </Text>
+                    <Text h3 color="black">
+                      Acme camera
+                    </Text>
+                  </Col>
+                </Card.Header>
+                <Card.Body css={{ p: 0 }}>
+                  <Card.Image
+                    src={`/${i + 1}.webp`}
+                    alt="태스트이미지"
+                    width="100%"
+                    height="100%"
+                    objectFit="cover"
+                  />
+                </Card.Body>
+                <Card.Footer
+                  isBlurred
+                  css={{
+                    position: "absolute",
+                    bgBlur: "#ffffff66",
+                    borderTop:
+                      "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                    bottom: 0,
+                    zIndex: 1,
+                  }}
+                >
+                  <Row>
+                    <Col>
+                      <Text color="#000" size={12}>
+                        {v}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        Get notified.
+                      </Text>
+                    </Col>
+                    <Col>
+                      <Row justify="flex-end">
+                        <Button flat auto rounded color="secondary">
+                          <Text
+                            css={{ color: "inherit" }}
+                            size={12}
+                            weight="bold"
+                            transform="uppercase"
+                          >
+                            Notify Me
+                          </Text>
+                        </Button>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Card.Footer>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid.Container>
     </div>
   );
 }
