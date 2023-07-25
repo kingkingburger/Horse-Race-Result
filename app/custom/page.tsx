@@ -9,6 +9,7 @@ import { Card5 } from "@/app/custom/Card5";
 
 export default function Example() {
   const { theme } = useTheme();
+
   return (
     <div>
       <Grid.Container gap={2}>
