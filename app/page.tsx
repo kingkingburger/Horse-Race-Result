@@ -7,9 +7,8 @@ import { fetchData } from "@/app/util/api";
 
 export default function Page() {
   const [horses, setHorse] = useState<Item[]>([]);
-  const key = process.env.API_KEY;
-
   useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_API_KEY;
     const fetchDataFromAPI = async () => {
       try {
         const param = {
@@ -17,8 +16,9 @@ export default function Page() {
         };
 
         const result = (await fetchData(param)) as ApiResponse;
-        console.log(result.body.items);
-        setHorse(result.body.items);
+        console.log(result);
+        console.log(result.response.body.items.item);
+        setHorse(result.response.body.items.item);
       } catch (error) {
         console.error(error);
       }
@@ -29,74 +29,74 @@ export default function Page() {
   return (
     <div>
       <Grid.Container gap={2}>
-        {/*{horses.map((v, i) => {*/}
-        {/*  return (*/}
-        {/*    <Grid xs={4} key={i}>*/}
-        {/*      <Card css={{ w: "100%", h: "400px" }}>*/}
-        {/*        <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>*/}
-        {/*          <Col>*/}
-        {/*            <Text*/}
-        {/*              size={12}*/}
-        {/*              weight="bold"*/}
-        {/*              transform="uppercase"*/}
-        {/*              color="#ffffffAA"*/}
-        {/*            >*/}
-        {/*              New*/}
-        {/*            </Text>*/}
-        {/*            <Text h3 color="black">*/}
-        {/*              Acme camera*/}
-        {/*            </Text>*/}
-        {/*          </Col>*/}
-        {/*        </Card.Header>*/}
-        {/*        <Card.Body css={{ p: 0 }}>*/}
-        {/*          <Card.Image*/}
-        {/*            src={`/${i + 1}.webp`}*/}
-        {/*            alt="태스트이미지"*/}
-        {/*            width="100%"*/}
-        {/*            height="100%"*/}
-        {/*            objectFit="cover"*/}
-        {/*          />*/}
-        {/*        </Card.Body>*/}
-        {/*        <Card.Footer*/}
-        {/*          isBlurred*/}
-        {/*          css={{*/}
-        {/*            position: "absolute",*/}
-        {/*            bgBlur: "#ffffff66",*/}
-        {/*            borderTop:*/}
-        {/*              "$borderWeights$light solid rgba(255, 255, 255, 0.2)",*/}
-        {/*            bottom: 0,*/}
-        {/*            zIndex: 1,*/}
-        {/*          }}*/}
-        {/*        >*/}
-        {/*          <Row>*/}
-        {/*            <Col>*/}
-        {/*              <Text color="#000" size={12}>*/}
-        {/*                {v}*/}
-        {/*              </Text>*/}
-        {/*              <Text color="#000" size={12}>*/}
-        {/*                Get notified.*/}
-        {/*              </Text>*/}
-        {/*            </Col>*/}
-        {/*            <Col>*/}
-        {/*              <Row justify="flex-end">*/}
-        {/*                <Button flat auto rounded color="secondary">*/}
-        {/*                  <Text*/}
-        {/*                    css={{ color: "inherit" }}*/}
-        {/*                    size={12}*/}
-        {/*                    weight="bold"*/}
-        {/*                    transform="uppercase"*/}
-        {/*                  >*/}
-        {/*                    Notify Me*/}
-        {/*                  </Text>*/}
-        {/*                </Button>*/}
-        {/*              </Row>*/}
-        {/*            </Col>*/}
-        {/*          </Row>*/}
-        {/*        </Card.Footer>*/}
-        {/*      </Card>*/}
-        {/*    </Grid>*/}
-        {/*  );*/}
-        {/*})}*/}
+        {horses.map((v, i) => {
+          return (
+            <Grid xs={4} key={i}>
+              <Card css={{ w: "100%", h: "400px" }}>
+                <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                  <Col>
+                    <Text
+                      size={12}
+                      weight="bold"
+                      transform="uppercase"
+                      color="#ffffffAA"
+                    >
+                      New
+                    </Text>
+                    <Text h3 color="black">
+                      Acme camera
+                    </Text>
+                  </Col>
+                </Card.Header>
+                <Card.Body css={{ p: 0 }}>
+                  <Card.Image
+                    src={`/${i + 1}.webp`}
+                    alt="태스트이미지"
+                    width="100%"
+                    height="100%"
+                    objectFit="cover"
+                  />
+                </Card.Body>
+                <Card.Footer
+                  isBlurred
+                  css={{
+                    position: "absolute",
+                    bgBlur: "#ffffff66",
+                    borderTop:
+                      "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                    bottom: 0,
+                    zIndex: 1,
+                  }}
+                >
+                  <Row>
+                    <Col>
+                      <Text color="#000" size={12}>
+                        {v.age}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        Get notified.
+                      </Text>
+                    </Col>
+                    <Col>
+                      <Row justify="flex-end">
+                        <Button flat auto rounded color="secondary">
+                          <Text
+                            css={{ color: "inherit" }}
+                            size={12}
+                            weight="bold"
+                            transform="uppercase"
+                          >
+                            Notify Me
+                          </Text>
+                        </Button>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Card.Footer>
+              </Card>
+            </Grid>
+          );
+        })}
       </Grid.Container>
     </div>
   );
@@ -104,7 +104,7 @@ export default function Page() {
 
 // body 속성의 타입을 정의하는 인터페이스
 interface ResponseBody {
-  items: Item[]; // items는 Item 인터페이스의 배열로 가정합니다.
+  items: { item: Item[] }; // items는 Item 인터페이스의 배열로 가정합니다.
   numOfRows: number;
   pageNo: number;
   totalCount: number;
@@ -118,8 +118,10 @@ interface ResponseHeader {
 
 // response 속성의 타입을 정의하는 인터페이스
 interface ApiResponse {
-  header: ResponseHeader;
-  body: ResponseBody;
+  response: {
+    header: ResponseHeader;
+    body: ResponseBody;
+  };
 }
 
 interface Item {
