@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Grid, Row, Text } from "@nextui-org/react";
-import axios from "axios";
-import { param } from "ts-interface-checker";
 import { fetchData } from "@/app/util/api";
 
 export default function Page() {
@@ -71,10 +69,70 @@ export default function Page() {
                   <Row>
                     <Col>
                       <Text color="#000" size={12}>
-                        {v.age}
+                        연령조건: {v.ageCond}
                       </Text>
                       <Text color="#000" size={12}>
-                        Get notified.
+                        순위: {v.ord}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        {v.sex}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        기수명: {v.jkName}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        기수번호: {v.jkNo}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경마장명: {v.meet}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        마필생산국가: {v.name}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        순위: {v.ord}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        순위비고: {v.ordBigo}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        마주명: {v.owName}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        마주번호: {v.owNo}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        복승식 배당율: {v.plcOdds}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        상금조건: {v.prizeCond}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        등급조건: {v.rank}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        승군순위: {v.rankRise}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        레이팅: {v.rating}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주일자: {v.rcDate}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주요일: {v.rcDay}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주거리: {v.rcDist}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주명: {v.rcName}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주번호: {v.rcNo}
+                      </Text>
+                      <Text color="#000" size={12}>
+                        경주기록: {v.rcTime}
                       </Text>
                     </Col>
                     <Col>
