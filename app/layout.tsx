@@ -10,6 +10,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <Link href="/">홈</Link>
           <Link href="/list">List</Link>
           <Link href="/custom">Custom</Link>
+          <Link href="/pomodoro">Pomodoro</Link>
         </div>
         {children}
       </body>
