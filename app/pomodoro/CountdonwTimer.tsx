@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 const CountdownTimer = () => {
   const [time, setTime] = useState(25 * 60); // 25 minutes in seconds
@@ -18,12 +22,9 @@ const CountdownTimer = () => {
   }, [time, isBreakTime]);
 
   // Function to format seconds as mm:ss
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
-      .toString()
-      .padStart(2, "0")}`;
+  const formatTime = (seconds: number): string => {
+    const formattedTime = dayjs.duration(seconds, "seconds").format("mm:ss");
+    return formattedTime;
   };
 
   return (
