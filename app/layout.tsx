@@ -14,6 +14,17 @@ export default function Layout({ children }: PropsWithChildren) {
           <Link href="/tetris">Tetris</Link>
         </div>
         {children}
+        <ul>
+          <li>
+            <a href="/create">Create</a>
+          </li>
+          <li>
+            <a href="/update/1">Update</a>
+          </li>
+          <li>
+            <input type="button" value="delete" />
+          </li>
+        </ul>
       </body>
     </html>
   );
