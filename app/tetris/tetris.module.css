@@ -1,0 +1,11 @@
+/* styles/Tetris.module.css */
+.tetris-cell {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+
+.tetris-cell.active {
+    background-color: #333;
+}

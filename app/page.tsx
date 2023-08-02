@@ -4,6 +4,30 @@ import { Button, Card, Col, Grid, Row, Text } from "@nextui-org/react";
 import { fetchData } from "@/app/util/api";
 
 export default function Page() {
+  const fields: { name: string; value: keyof Item }[] = [
+    { name: "연령조건", value: "ageCond" },
+    { name: "순위", value: "ord" },
+    { name: "성별", value: "sex" },
+    { name: "기수명", value: "jkName" },
+    { name: "기수번호", value: "jkNo" },
+    { name: "경마장명", value: "meet" },
+    { name: "마필생산국가", value: "name" },
+    { name: "순위비고", value: "ordBigo" },
+    { name: "마주명", value: "owName" },
+    { name: "마주번호", value: "owNo" },
+    { name: "복승식 배당율", value: "plcOdds" },
+    { name: "상금조건", value: "prizeCond" },
+    { name: "등급조건", value: "rank" },
+    { name: "승군순위", value: "rankRise" },
+    { name: "레이팅", value: "rating" },
+    { name: "경주일자", value: "rcDate" },
+    { name: "경주요일", value: "rcDay" },
+    { name: "경주거리", value: "rcDist" },
+    { name: "경주명", value: "rcName" },
+    { name: "경주번호", value: "rcNo" },
+    { name: "경주기록", value: "rcTime" },
+  ];
+
   const [horses, setHorse] = useState<Item[]>([]);
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_API_KEY;
@@ -28,6 +52,7 @@ export default function Page() {
     <div>
       <Grid.Container gap={2}>
         {horses.map((v, i) => {
+          // @ts-ignore
           return (
             <Grid xs={4} key={i}>
               <Card css={{ w: "100%", h: "400px" }}>
@@ -68,72 +93,11 @@ export default function Page() {
                 >
                   <Row>
                     <Col>
-                      <Text color="#000" size={12}>
-                        연령조건: {v.ageCond}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        순위: {v.ord}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        {v.sex}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        기수명: {v.jkName}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        기수번호: {v.jkNo}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경마장명: {v.meet}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        마필생산국가: {v.name}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        순위: {v.ord}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        순위비고: {v.ordBigo}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        마주명: {v.owName}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        마주번호: {v.owNo}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        복승식 배당율: {v.plcOdds}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        상금조건: {v.prizeCond}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        등급조건: {v.rank}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        승군순위: {v.rankRise}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        레이팅: {v.rating}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주일자: {v.rcDate}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주요일: {v.rcDay}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주거리: {v.rcDist}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주명: {v.rcName}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주번호: {v.rcNo}
-                      </Text>
-                      <Text color="#000" size={12}>
-                        경주기록: {v.rcTime}
-                      </Text>
+                      {fields.map((field) => (
+                        <Text color="#000" size={12} key={field.value}>
+                          {field.name}: {v[field.value]}
+                        </Text>
+                      ))}
                     </Col>
                     <Col>
                       <Row justify="flex-end">
