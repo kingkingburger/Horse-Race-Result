@@ -6,10 +6,14 @@ export default function Create() {
   const router = useRouter();
   return (
     <form
-      onSubmit={(event: { [key: string]: any }) => {
+      onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const title = event.target.title.value;
-        const body = event.target.body.value;
+        const title = (
+          event.currentTarget.elements.namedItem("title") as HTMLInputElement
+        )?.value;
+        const body = (
+          event.currentTarget.elements.namedItem("body") as HTMLInputElement
+        )?.value;
         const options = {
           method: "POST",
           headers: {
