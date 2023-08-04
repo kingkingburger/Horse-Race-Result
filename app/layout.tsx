@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import "./globals.css";
 import Link from "next/link";
+import { Control } from "@/app/Control";
 
 export default async function Layout({ children }: PropsWithChildren) {
   // const [topics, setTopics] = useState([]);
@@ -12,7 +13,9 @@ export default async function Layout({ children }: PropsWithChildren) {
   //       console.log("result = ", result);
   //     });
   // }, []);
-  const response = await fetch("http://localhost:9999/topics");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics`, {
+    cache: "no-store",
+  });
   const topics = await response.json();
   return (
     <html>
@@ -32,17 +35,7 @@ export default async function Layout({ children }: PropsWithChildren) {
           );
         })}
         {children}
-        <ul>
-          <li>
-            <Link href="/create">Create</Link>
-          </li>
-          <li>
-            <Link href="/update/1">Update</Link>
-          </li>
-          <li>
-            <input type="button" value="delete" />
-          </li>
-        </ul>
+        <Control />
       </body>
     </html>
   );
