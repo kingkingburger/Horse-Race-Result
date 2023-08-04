@@ -1,6 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Grid, Row, Text } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Link,
+  Image,
+} from "@nextui-org/react";
+
 import { fetchData } from "@/app/util/api";
 
 export default function Page() {
@@ -50,76 +60,55 @@ export default function Page() {
 
   return (
     <div>
-      <Grid.Container gap={2}>
+      <div className="flex">
         {horses.map((v, i) => {
           // @ts-ignore
           return (
-            <Grid xs={4} key={i}>
-              <Card css={{ w: "100%", h: "400px" }}>
-                <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-                  <Col>
-                    <Text
-                      size={12}
-                      weight="bold"
-                      transform="uppercase"
-                      color="#ffffffAA"
-                    >
-                      New
-                    </Text>
-                    <Text h3 color="black">
-                      Acme camera
-                    </Text>
-                  </Col>
-                </Card.Header>
-                <Card.Body css={{ p: 0 }}>
-                  <Card.Image
+            <div className="flex">
+              <Card>
+                <CardHeader>
+                  <div className="col-auto">Acme camera</div>
+                </CardHeader>
+                <CardBody>
+                  <Image
                     src={`/${i + 1}.webp`}
                     alt="태스트이미지"
                     width="100%"
                     height="100%"
-                    objectFit="cover"
                   />
-                </Card.Body>
-                <Card.Footer
-                  isBlurred
-                  css={{
-                    position: "absolute",
-                    bgBlur: "#ffffff66",
-                    borderTop:
-                      "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-                    bottom: 0,
-                    zIndex: 1,
-                  }}
-                >
-                  <Row>
-                    <Col>
+                </CardBody>
+                <CardFooter>
+                  <div className="row-auto">
+                    <div className="col-auto">
                       {fields.map((field) => (
-                        <Text color="#000" size={12} key={field.value}>
+                        // <Text color="#000" size={12} key={field.value}>
+                        <div>
                           {field.name}: {v[field.value]}
-                        </Text>
+                        </div>
+                        // </Text>
                       ))}
-                    </Col>
-                    <Col>
-                      <Row justify="flex-end">
-                        <Button flat auto rounded color="secondary">
-                          <Text
-                            css={{ color: "inherit" }}
-                            size={12}
-                            weight="bold"
-                            transform="uppercase"
+                    </div>
+                    <div className="col-auto">
+                      <div className="row-auto justify-center">
+                        <Button>
+                          <div
+                          // css={{ color: "inherit" }}
+                          // size={12}
+                          // weight="bold"
+                          // transform="uppercase"
                           >
                             Notify Me
-                          </Text>
+                          </div>
                         </Button>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Card.Footer>
+                      </div>
+                    </div>
+                  </div>
+                </CardFooter>
               </Card>
-            </Grid>
+            </div>
           );
         })}
-      </Grid.Container>
+      </div>
     </div>
   );
 }

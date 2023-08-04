@@ -44,12 +44,9 @@ const CountdownTimer = () => {
     <div>
       <h1>Countdown Timer</h1>
       {isBreakTime ? <p>Break Time</p> : <p>Work Time</p>}
-
-      <p>
-        Time remaining:{" "}
-        <p className={styles.timer} style={{ color: textColor }}>
-          {formatTime(time)}
-        </p>
+      Time remaining:{" "}
+      <p className={styles.timer} style={{ color: textColor }}>
+        {formatTime(time)}
       </p>
     </div>
   );

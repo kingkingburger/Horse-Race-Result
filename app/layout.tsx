@@ -4,21 +4,12 @@ import Link from "next/link";
 import { Control } from "@/app/Control";
 
 export default async function Layout({ children }: PropsWithChildren) {
-  // const [topics, setTopics] = useState([]);
-  // useEffect(() => {
-  //   fetch("http://localhost:9999/topics")
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setTopics(result);
-  //       console.log("result = ", result);
-  //     });
-  // }, []);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics`, {
     cache: "no-store",
   });
   const topics = await response.json();
   return (
-    <html>
+    <html className="dark">
       <body>
         <div className="navbar">
           <Link href="/">홈</Link>
