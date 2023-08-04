@@ -2,6 +2,9 @@ import React, { PropsWithChildren } from "react";
 import "./globals.css";
 import Link from "next/link";
 import { Control } from "@/app/Control";
+import Boards from "@/app/boards";
+import { NextUIProvider } from "@nextui-org/react";
+import { Providers } from "@/app/providers";
 
 export default async function Layout({ children }: PropsWithChildren) {
   // const [topics, setTopics] = useState([]);
@@ -18,8 +21,8 @@ export default async function Layout({ children }: PropsWithChildren) {
   });
   const topics = await response.json();
   return (
-    <html>
-      <body>
+    <html className="dark">
+      <body className="bg-black">
         <div className="navbar">
           <Link href="/">홈</Link>
           <Link href="/list">List</Link>
@@ -27,13 +30,16 @@ export default async function Layout({ children }: PropsWithChildren) {
           <Link href="/pomodoro">Pomodoro</Link>
           <Link href="/tetris">Tetris</Link>
         </div>
-        {topics.map((topic: any) => {
-          return (
-            <li key={topic.id}>
-              <Link href={`/read/${topic.id}`}>{topic.title}</Link>
-            </li>
-          );
-        })}
+        {/*{topics.map((topic: any) => {*/}
+        {/*  return (*/}
+        {/*    <div>*/}
+        {/*      <Boards topic={topic} />*/}
+        {/*      <li key={topic.id}>*/}
+        {/*        <Link href={`/read/${topic.id}`}>{topic.title}</Link>*/}
+        {/*      </li>*/}
+        {/*    </div>*/}
+        {/*  );*/}
+        {/*})}*/}
         {children}
         <Control />
       </body>
