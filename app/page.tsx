@@ -62,9 +62,8 @@ export default function Page() {
     <div>
       <div className="flex">
         {horses.map((v, i) => {
-          // @ts-ignore
           return (
-            <div className="flex">
+            <div className="flex" key={i}>
               <Card>
                 <CardHeader>
                   <div className="col-auto">Acme camera</div>
@@ -80,9 +79,9 @@ export default function Page() {
                 <CardFooter>
                   <div className="row-auto">
                     <div className="col-auto">
-                      {fields.map((field) => (
+                      {fields.map((field, index) => (
                         // <Text color="#000" size={12} key={field.value}>
-                        <div>
+                        <div key={index}>
                           {field.name}: {v[field.value]}
                         </div>
                         // </Text>
