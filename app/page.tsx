@@ -59,55 +59,40 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
-      <div className="flex">
-        {horses.map((v, i) => {
-          return (
-            <div className="flex" key={i}>
-              <Card>
-                <CardHeader>
-                  <div className="col-auto">Acme camera</div>
-                </CardHeader>
-                <CardBody>
-                  <Image
-                    src={`/${i + 1}.webp`}
-                    alt="태스트이미지"
-                    width="100%"
-                    height="100%"
-                  />
-                </CardBody>
-                <CardFooter>
-                  <div className="row-auto">
-                    <div className="col-auto">
-                      {fields.map((field, index) => (
-                        // <Text color="#000" size={12} key={field.value}>
-                        <div key={index}>
-                          {field.name}: {v[field.value]}
-                        </div>
-                        // </Text>
-                      ))}
-                    </div>
-                    <div className="col-auto">
-                      <div className="row-auto justify-center">
-                        <Button>
-                          <div
-                          // css={{ color: "inherit" }}
-                          // size={12}
-                          // weight="bold"
-                          // transform="uppercase"
-                          >
-                            Notify Me
-                          </div>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardFooter>
-              </Card>
+    <div className="flex flex-wrap space-x-4 min-w-[300px]">
+      {/* 화면 비율에 따라 자동으로 래핑 */}
+      {horses.map((v, i) => (
+        <Card
+          className="max-w-[300px] min-w-[300px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)]"
+          key={i}
+        >
+          {" "}
+          {/* 카드의 최대 너비와 레이아웃 조절 */}
+          <CardHeader className="flex gap-3 items-center">
+            <Image
+              alt="nextui logo"
+              height={40}
+              radius="sm"
+              src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+              width={40}
+            />
+            <div className="flex flex-col">
+              <p className="text-md">{v.name}</p>
+              <p className="text-small text-default-500">{v.ord}세</p>
             </div>
-          );
-        })}
-      </div>
+          </CardHeader>
+          <Divider />
+          <CardBody className="flex flex-col space-y-2">
+            {fields.map((field, index) => (
+              <div key={index}>
+                <span className="font-semibold">{field.name}:</span>{" "}
+                <span className="whitespace-pre-wrap">{v[field.value]}</span>
+              </div>
+            ))}
+          </CardBody>
+          <Divider />
+        </Card>
+      ))}
     </div>
   );
 }
