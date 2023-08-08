@@ -44,7 +44,9 @@ export function Control(props: any) {
   const id = params.id;
   const router = useRouter();
   const topics = props.topics as { id: number; title: string }[];
-
+  const handleLinkClick = (topic: any) => {
+    router.push(`/read/${topic.id}`);
+  };
   return (
     <ul>
       <Dropdown>
@@ -53,7 +55,7 @@ export function Control(props: any) {
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions" items={topics}>
           {(topic: any) => (
-            <DropdownItem key={topic.id}>
+            <DropdownItem onClick={() => handleLinkClick(topic)} key={topic.id}>
               <Link href={`/read/${topic.id}`}>{topic.title}</Link>
             </DropdownItem>
           )}
