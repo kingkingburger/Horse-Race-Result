@@ -59,11 +59,11 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex flex-wrap space-x-4 min-w-[400px]">
+    <div className="flex flex-wrap justify-center space-x-2 min-w-[400px]">
       {/* 화면 비율에 따라 자동으로 래핑 */}
       {horses.map((v, i) => (
         <Card
-          className="max-w-[400px] min-w-[400px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)]"
+          className="max-w-[400px] min-w-[400px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)] m-1"
           key={i}
         >
           {" "}
