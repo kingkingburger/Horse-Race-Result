@@ -48,7 +48,7 @@ export function Control(props: any) {
     router.push(`/read/${topic.id}`);
   };
   return (
-    <ul>
+    <a>
       <Dropdown>
         <DropdownTrigger>
           <Button variant="bordered">개시글들</Button>
@@ -61,9 +61,9 @@ export function Control(props: any) {
           )}
         </DropdownMenu>
       </Dropdown>
-      <li>
-        <Link href="/create">Create</Link>
-      </li>
+      <div>
+        <Link href="/create">게시판 생성하기</Link>
+      </div>
       {id ? (
         <>
           <li>
@@ -86,6 +86,6 @@ export function Control(props: any) {
           </li>
         </>
       ) : null}
-    </ul>
+    </a>
   );
 }
