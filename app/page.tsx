@@ -59,11 +59,11 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex flex-wrap space-x-4 min-w-[300px]">
+    <div className="flex flex-wrap space-x-4 min-w-[400px]">
       {/* 화면 비율에 따라 자동으로 래핑 */}
       {horses.map((v, i) => (
         <Card
-          className="max-w-[300px] min-w-[300px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)]"
+          className="max-w-[400px] min-w-[400px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)]"
           key={i}
         >
           {" "}
@@ -83,12 +83,14 @@ export default function Page() {
           </CardHeader>
           <Divider />
           <CardBody className="flex flex-col space-y-2">
-            {fields.map((field, index) => (
-              <div key={index}>
-                <span className="font-semibold">{field.name}:</span>{" "}
-                <span className="whitespace-pre-wrap">{v[field.value]}</span>
-              </div>
-            ))}
+            <div className="grid grid-cols-2 gap-x-4">
+              {fields.map((field, index) => (
+                <div key={index}>
+                  <span className="font-semibold">{field.name}:</span>{" "}
+                  <span className="whitespace-pre-wrap">{v[field.value]}</span>
+                </div>
+              ))}
+            </div>
           </CardBody>
           <Divider />
         </Card>
