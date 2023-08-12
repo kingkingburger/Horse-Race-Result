@@ -41,11 +41,11 @@ function getRandomColorName(
 }
 export function Control(props: any) {
   const params = useParams();
-  const id = params.id;
+  const id = params?.id || 0;
   const router = useRouter();
-  const topics = props.topics as { id: number; title: string }[];
+  const topics = props.topics as { testId: number; title: string }[];
   const handleLinkClick = (topic: any) => {
-    router.push(`/read/${topic.id}`);
+    router.push(`/read/${topic.testId}`);
   };
   return (
     <a>
@@ -55,8 +55,11 @@ export function Control(props: any) {
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions" items={topics}>
           {(topic: any) => (
-            <DropdownItem onClick={() => handleLinkClick(topic)} key={topic.id}>
-              <Link href={`/read/${topic.id}`}>{topic.title}</Link>
+            <DropdownItem
+              onClick={() => handleLinkClick(topic)}
+              key={topic.testId}
+            >
+              <Link href={`/read/${topic.testId}`}>{topic.title}</Link>
             </DropdownItem>
           )}
         </DropdownMenu>

@@ -8,18 +8,14 @@ function getRandomColorName(colorArray: string[]) {
 }
 
 export default async function Layout({ children }: PropsWithChildren) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`,
+    {
+      cache: "no-store",
+    }
+  );
   const topics = await response.json();
-  const colorArray = [
-    "foreground",
-    "primary",
-    "secondary",
-    "success",
-    "warning",
-    "danger",
-  ];
+
   return (
     <html className="dark">
       <body>
@@ -30,7 +26,7 @@ export default async function Layout({ children }: PropsWithChildren) {
           <Link href="/pomodoro">Pomodoro</Link>
           <Link href="/tetris">Tetris</Link>
 
-          <Control colorArray={colorArray} topics={topics} />
+          <Control topics={topics} />
         </div>
 
         {children}

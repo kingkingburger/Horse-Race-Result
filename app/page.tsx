@@ -1,15 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Divider,
-  Link,
-  Image,
-} from "@nextui-org/react";
+import { Card, CardBody, CardHeader, Divider, Image } from "@nextui-org/react";
 
 import { fetchData } from "@/app/util/api";
 

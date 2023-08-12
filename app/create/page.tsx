@@ -11,21 +11,21 @@ export default function Create() {
         const title = (
           event.currentTarget.elements.namedItem("title") as HTMLInputElement
         )?.value;
-        const body = (
-          event.currentTarget.elements.namedItem("body") as HTMLInputElement
+        const content = (
+          event.currentTarget.elements.namedItem("content") as HTMLInputElement
         )?.value;
         const options = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title, body }),
+          body: JSON.stringify({ title, content }),
         };
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics`, options)
+        fetch(`${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`, options)
           .then((response) => response.json())
           .then((result) => {
             console.log(result);
-            const lastId = result.id;
+            const lastId = result.testId;
             router.refresh();
             router.push(`/read/${lastId}`);
           });
@@ -35,7 +35,7 @@ export default function Create() {
         <input type="text" name="title" placeholder={"title"} />
       </p>
       <p>
-        <textarea name={"body"} placeholder={"body"} />
+        <textarea name={"content"} placeholder={"content"} />
       </p>
       <p>
         <input type={"submit"} value={"create"} />

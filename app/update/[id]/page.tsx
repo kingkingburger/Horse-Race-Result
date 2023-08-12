@@ -9,7 +9,7 @@ export default function Update() {
   const router = useRouter();
 
   const params = useParams();
-  const id = params.id;
+  const id = params?.id;
   useEffect(() => {
     fetch(`http://localhost:9999/topics/${id}`)
       .then((response) => response.json())
