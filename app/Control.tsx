@@ -10,35 +10,6 @@ import {
   Button,
 } from "@nextui-org/react";
 
-interface colorElement {
-  success: string;
-  foreground: string;
-  primary: string;
-  secondary: string;
-  warning: string;
-  danger: string;
-  undefined: undefined;
-}
-
-function getRandomColorName(
-  colorArray: string[]
-):
-  | "success"
-  | "foreground"
-  | "primary"
-  | "secondary"
-  | "warning"
-  | "danger"
-  | undefined {
-  return colorArray[Math.floor(Math.random() * colorArray.length)] as
-    | "success"
-    | "foreground"
-    | "primary"
-    | "secondary"
-    | "warning"
-    | "danger"
-    | undefined;
-}
 export function Control(props: any) {
   const params = useParams();
   const id = params?.id || 0;
@@ -48,7 +19,7 @@ export function Control(props: any) {
     router.push(`/read/${topic.testId}`);
   };
   return (
-    <a>
+    <div>
       <Dropdown>
         <DropdownTrigger>
           <Button variant="bordered">개시글들</Button>
@@ -89,6 +60,6 @@ export function Control(props: any) {
           </li>
         </>
       ) : null}
-    </a>
+    </div>
   );
 }
