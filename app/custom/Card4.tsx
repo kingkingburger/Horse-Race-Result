@@ -1,60 +1,75 @@
-import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import React from "react";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
-export const Card4 = () => (
-  <Card css={{ w: "100%", h: "400px" }}>
-    <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-      <Col>
-        <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-          New
-        </Text>
-        <Text h3 color="black">
-          Acme camera
-        </Text>
-      </Col>
-    </Card.Header>
-    <Card.Body css={{ p: 0 }}>
-      <Card.Image
-        src="https://nextui.org/images/card-example-6.jpeg"
-        width="100%"
-        height="100%"
-        objectFit="cover"
-        alt="Card example background"
-      />
-    </Card.Body>
-    <Card.Footer
-      isBlurred
-      css={{
-        position: "absolute",
-        bgBlur: "#ffffff66",
-        borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-        bottom: 0,
-        zIndex: 1,
-      }}
-    >
-      <Row>
-        <Col>
-          <Text color="#000" size={12}>
-            Available soon.
-          </Text>
-          <Text color="#000" size={12}>
-            Get notified.
-          </Text>
-        </Col>
-        <Col>
-          <Row justify="flex-end">
-            <Button flat auto rounded color="secondary">
-              <Text
-                css={{ color: "inherit" }}
-                size={12}
-                weight="bold"
-                transform="uppercase"
-              >
-                Notify Me
-              </Text>
-            </Button>
-          </Row>
-        </Col>
-      </Row>
-    </Card.Footer>
-  </Card>
-);
+export default function Card4() {
+  const list = [
+    {
+      title: "Orange",
+      img: "https://nextui.org/images/fruit-1.jpeg",
+      price: "$5.50",
+    },
+    {
+      title: "Tangerine",
+      img: "https://nextui.org/images/fruit-2.jpeg",
+      price: "$3.00",
+    },
+    {
+      title: "Raspberry",
+      img: "https://nextui.org/images/fruit-3.jpeg",
+      price: "$10.00",
+    },
+    {
+      title: "Lemon",
+      img: "https://nextui.org/images/fruit-4.jpeg",
+      price: "$5.30",
+    },
+    {
+      title: "Avocado",
+      img: "https://nextui.org/images/fruit-5.jpeg",
+      price: "$15.70",
+    },
+    {
+      title: "Lemon 2",
+      img: "https://nextui.org/images/fruit-6.jpeg",
+      price: "$8.00",
+    },
+    {
+      title: "Banana",
+      img: "https://nextui.org/images/fruit-7.jpeg",
+      price: "$7.50",
+    },
+    {
+      title: "Watermelon",
+      img: "https://nextui.org/images/fruit-8.jpeg",
+      price: "$12.20",
+    },
+  ];
+
+  return (
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+      {list.map((item, index) => (
+        <Card
+          shadow="sm"
+          key={index}
+          isPressable
+          onPress={() => console.log("item pressed")}
+        >
+          <CardBody className="overflow-visible p-0">
+            <Image
+              shadow="sm"
+              radius="lg"
+              width="100%"
+              alt={item.title}
+              className="w-full object-cover h-[140px]"
+              src={item.img}
+            />
+          </CardBody>
+          <CardFooter className="text-small justify-between">
+            <b>{item.title}</b>
+            <p className="text-default-500">{item.price}</p>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  );
+}
