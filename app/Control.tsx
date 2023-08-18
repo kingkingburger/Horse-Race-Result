@@ -10,6 +10,15 @@ import {
   Button,
 } from "@nextui-org/react";
 
+interface topic {
+  testId: number;
+  title: string;
+}
+
+type topicType = {
+  [P in keyof topic]?: topic[P];
+};
+
 export function Control(props: any) {
   const params = useParams();
   const id = params?.id || 0;
@@ -25,7 +34,7 @@ export function Control(props: any) {
           <Button variant="bordered">개시글들</Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions" items={topics}>
-          {(topic: any) => (
+          {(topic: topicType) => (
             <DropdownItem
               onClick={() => handleLinkClick(topic)}
               key={topic.testId}

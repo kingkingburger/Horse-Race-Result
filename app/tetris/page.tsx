@@ -52,7 +52,7 @@ const Tetris: React.FC = () => {
       x: Math.floor(boardWidth / 2) - Math.floor(shape[0].length / 2),
       y: 0,
     });
-  }, []);
+  }, [currentPiece]);
 
   const isCollision = useCallback(
     (piece: number[][], x: number, y: number) => {

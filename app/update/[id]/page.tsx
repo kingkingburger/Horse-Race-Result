@@ -18,7 +18,7 @@ export default function Update() {
         setBody(result.body);
         console.log(result);
       });
-  }, []);
+  }, [id]);
   return (
     <form
       onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {

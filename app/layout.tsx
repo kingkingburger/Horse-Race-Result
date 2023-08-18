@@ -8,13 +8,18 @@ function getRandomColorName(colorArray: string[]) {
 }
 
 export default async function Layout({ children }: PropsWithChildren) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`,
-    {
-      cache: "no-store",
-    }
-  );
-  const topics = await response.json();
+  let topics = {};
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`,
+      {
+        cache: "no-store",
+      }
+    );
+    topics = await response.json();
+  } catch (e) {
+    console.error(e);
+  }
 
   return (
     <html className="dark">
