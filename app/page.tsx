@@ -3,6 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardHeader, Divider, Image } from "@nextui-org/react";
 
 import { fetchData } from "@/app/util/api";
+import dayjs from "dayjs";
+
+const splitString = (str: string | number): string => {
+  if (typeof str === "number") str = str.toString();
+
+  return `${str.slice(0, 4)}-${str.slice(4, 6)}-${str.slice(6, 8)}`;
+};
 
 export default function Page() {
   const fields: { name: string; value: keyof Item }[] = [
@@ -52,7 +59,7 @@ export default function Page() {
   return (
     <div className="flex flex-wrap justify-center space-x-2 min-w-[400px]">
       {/* 화면 비율에 따라 자동으로 래핑 */}
-      {horses.map((v, i) => (
+      {horses.map((item, i) => (
         <Card
           className="max-w-[400px] min-w-[400px] w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)] m-1"
           key={i}
@@ -68,8 +75,8 @@ export default function Page() {
               width={40}
             />
             <div className="flex flex-col">
-              <p className="text-md">{v.name}</p>
-              <p className="text-small text-default-500">{v.ord}세</p>
+              <p className="text-md">{item.name}</p>
+              <p className="text-small text-default-500">순서: {item.ord}</p>
             </div>
           </CardHeader>
           <Divider />
@@ -78,7 +85,11 @@ export default function Page() {
               {fields.map((field, index) => (
                 <div key={index}>
                   <span className="font-semibold">{field.name}:</span>{" "}
-                  <span className="whitespace-pre-wrap">{v[field.value]}</span>
+                  <span className="whitespace-pre-wrap">
+                    {field.value === "rcDate"
+                      ? splitString(item[field.value])
+                      : item[field.value]}
+                  </span>
                 </div>
               ))}
             </div>
