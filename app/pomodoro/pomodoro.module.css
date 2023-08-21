@@ -8,3 +8,61 @@
 .timer{
     font-size: 30px;
 }
+
+/* pomodoro.module.css */
+.heading {
+    /* Heading 스타일링 */
+}
+
+.progressBar {
+    /* Progress Bar 컨테이너 스타일링 */
+}
+
+.circleProgress {
+    /* 동그라미 진행 막대 스타일링 */
+    border-width: 6px;
+    /*border-style: solid;*/
+    /*border-top-color: transparent;*/
+    /*border-radius: 50%;*/
+    /*animation-timing-function: linear;*/
+}
+/* 동그라미 스타일링 */
+.circle {
+    width: 200px;
+    height: 200px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    position: relative;
+    /*transform: rotate(-90deg); !* 원을 기울어진 형태로 만듦 *!*/
+}
+
+/* 텍스트 스타일링 */
+.circle p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 1.5rem;
+}
+.rotateWork {
+    animation: rotate 1500s linear infinite, progress 1500s linear 0ms forwards;
+}
+
+.rotateBreak {
+    animation: rotate 300s linear infinite, progress 300s linear 0ms forwards;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes progress {
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+/* 이하 스타일링 클래스 작성 */
