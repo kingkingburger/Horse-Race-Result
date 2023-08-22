@@ -3,6 +3,12 @@
     font-size: 20px;
     color: #9a4c4c;
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    margin: auto;
+    /*width: min-content;*/
 }
 
 .timer{
@@ -18,6 +24,15 @@
     /* Progress Bar 컨테이너 스타일링 */
 }
 
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    margin: auto;
+    width: min-content;
+}
+
 .circleProgress {
     /* 동그라미 진행 막대 스타일링 */
     border-width: 6px;
@@ -28,12 +43,13 @@
 }
 /* 동그라미 스타일링 */
 .circle {
-    width: 200px;
-    height: 200px;
-    border: 6px solid #fff;
+    width: 500px;
+    height: 500px;
+    border: 9px solid #fff;
     border-radius: 50%;
     position: relative;
     /*transform: rotate(-90deg); !* 원을 기울어진 형태로 만듦 *!*/
+    margin: auto;
 }
 
 /* 텍스트 스타일링 */
@@ -43,8 +59,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #000;
-    font-size: 1.5rem;
+    font-size: 4.5rem;
 }
+
 .rotateWork {
     animation: rotate 1500s linear infinite, progress 1500s linear 0ms forwards;
 }

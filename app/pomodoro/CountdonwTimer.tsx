@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import {getRandomColor} from "@/app/pomodoro/getRandomColor";
 import styles from "./pomodoro.module.css"
+import ProgressBar from "@/app/pomodoro/progressbar";
 
 dayjs.extend(duration);
 
@@ -11,6 +12,7 @@ const CountdownTimer = () => {
     const [time, setTime] = useState(25 * 60); // 25 minutes in seconds
     const [isBreakTime, setIsBreakTime] = useState(false);
     const [textColor, setTextColor] = useState("#000"); // 초기 색상은 검정(#000)으로 설정
+    const [progress,setProgress] = useState(0);
 
     useEffect(() => {
         if (time === 0) {
@@ -22,6 +24,10 @@ const CountdownTimer = () => {
             setTime((prevTime) => prevTime - 1);
             const newColor = getRandomColor();
             setTextColor(newColor);
+            setProgress((prevProgress) =>{
+                const newProgress = prevProgress + 0.05;
+                return newProgress>1 ? 0 :newProgress;
+            })
         }, 1000);
 
         return () => clearInterval(timer);
@@ -38,6 +44,7 @@ const CountdownTimer = () => {
                     <p>{formattedTime}</p>
                 </div>
             </div>
+            <ProgressBar progress={progress} />
             <p className={`${styles.info} ${isBreakTime ? styles.break : styles.work}`}>
                 {isBreakTime ? "Break Time" : "Work Time"}
             </p>
