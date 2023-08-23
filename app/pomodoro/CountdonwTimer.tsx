@@ -11,7 +11,6 @@ dayjs.extend(duration);
 const CountdownTimer = () => {
     const [time, setTime] = useState(25 * 60); // 25 minutes in seconds
     const [isBreakTime, setIsBreakTime] = useState(false);
-    const [textColor, setTextColor] = useState("#000"); // 초기 색상은 검정(#000)으로 설정
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -22,10 +21,9 @@ const CountdownTimer = () => {
 
         const timer = setInterval(() => {
             setTime((prevTime) => prevTime - 1);
-            const newColor = getRandomColor();
-            setTextColor(newColor);
             setProgress((prevProgress) => {
-                const newProgress = prevProgress + 0.05;
+                let mainTime = isBreakTime ? 5 * 60 : 25 * 60;
+                const newProgress = prevProgress + (1 / (mainTime));
                 return newProgress > 1 ? 0 : newProgress;
             })
         }, 1000);
@@ -43,7 +41,7 @@ const CountdownTimer = () => {
             </div>
             <div className={styles.progressBar}>
                 <ProgressBar progress={progress}/>
-                <div className={styles.circle} style={{position: 'absolute', top: 0, left: 0, zIndex: 2}}>
+                <div className={styles.circle}>
                     <p>{formattedTime}</p>
                 </div>
             </div>
