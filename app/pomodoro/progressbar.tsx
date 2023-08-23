@@ -37,7 +37,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
         context.stroke();
     }, [progress]);
 
-    return <canvas ref={canvasRef} width={400} height={400} />;
+    return <canvas ref={canvasRef} width={500} height={500} />;
 };
 
 export default ProgressBar;

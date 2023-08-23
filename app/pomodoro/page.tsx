@@ -19,12 +19,10 @@ export default function Pomodoro() {
     }, [time]);
 
     return (
-        <div className="flex h-screen flex-col justify-center overflow-hidden bg-gray-50 mx-auto w-full">
-            <div className="flex justify-center grid">
-                <div className={styles.mainContent}>
-                    뽀모도로 타이머 입니다. 25분을 기준 5분 휴식입니다
-                    <CountdownTimer/>
-                </div>
+        <div className="flex justify-center">
+            <div className={styles.mainContent}>
+                뽀모도로 타이머 입니다. 25분을 기준 5분 휴식입니다
+                <CountdownTimer/>
             </div>
         </div>
     );

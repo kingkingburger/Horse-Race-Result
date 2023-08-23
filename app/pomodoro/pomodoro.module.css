@@ -5,10 +5,14 @@
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    /*height: 50vh;*/
     justify-content: center;
     margin: auto;
     /*width: min-content;*/
+}
+
+.info{
+    color: #65c4bb;
 }
 
 .timer{
@@ -21,7 +25,9 @@
 }
 
 .progressBar {
-    /* Progress Bar 컨테이너 스타일링 */
+    position: relative;
+    width: 100px;
+    height: 100px;
 }
 
 .timer-container {
@@ -47,9 +53,12 @@
     height: 500px;
     border: 9px solid #fff;
     border-radius: 50%;
-    position: relative;
-    /*transform: rotate(-90deg); !* 원을 기울어진 형태로 만듦 *!*/
+    /*position: relative;*/
     margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    zIndex: 2;
 }
 
 /* 텍스트 스타일링 */
