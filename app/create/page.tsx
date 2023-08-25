@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { inspect } from "util";
+import styles from "./create.module.css";
 
 export default function Create() {
   const router = useRouter();
@@ -31,15 +33,34 @@ export default function Create() {
           });
       }}
     >
-      <p>
-        <input type="text" name="title" placeholder={"title"} />
-      </p>
-      <p>
-        <textarea name={"content"} placeholder={"content"} />
-      </p>
-      <p>
-        <input type={"submit"} value={"create"} />
-      </p>
+      <div className="flex justify-center items-center">
+        <div className="w-1/3">
+          <div className="text-center">
+            <div className="mb-4">
+              <input
+                type="text"
+                name="title"
+                placeholder="title"
+                className="w-full p-2 border rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <textarea
+                name="content"
+                placeholder="content"
+                className="w-full p-2 border rounded"
+              ></textarea>
+            </div>
+            <div>
+              <input
+                type="submit"
+                value="create"
+                className="w-full p-2 bg-blue-500 text-white rounded cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   );
 }
