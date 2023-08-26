@@ -30,7 +30,7 @@ export default async function Layout({ children }: PropsWithChildren) {
           <Link href="/custom">Custom</Link>
           <Link href="/pomodoro">Pomodoro</Link>
           <Link href="/tetris">Tetris</Link>
-
+          <Link href="/board">게시글들</Link>
           <Control topics={topics} />
         </div>
 
