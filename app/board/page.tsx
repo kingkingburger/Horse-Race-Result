@@ -35,12 +35,12 @@ export default function Board() {
   };
 
   return (
-    <div>
+    <div className="h-screen flex justify-center mt-3">
       <ul>
-        {topics.map((topic: topic) => (
+        {topics.map((topic: topic, index: number) => (
           <li key={topic.testId}>
             <button onClick={() => handleLinkClick(topic)}>
-              {topic.title}
+              {index + 1}. {topic.title}
             </button>
           </li>
         ))}

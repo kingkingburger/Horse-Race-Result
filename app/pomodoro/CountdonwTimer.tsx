@@ -1,7 +1,6 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import {getRandomColor} from "@/app/pomodoro/getRandomColor";
 import styles from "./pomodoro.module.css"
 import ProgressBar from "@/app/pomodoro/progressbar";
 
