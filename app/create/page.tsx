@@ -16,12 +16,13 @@ export default function Create() {
         const content = (
           event.currentTarget.elements.namedItem("content") as HTMLInputElement
         )?.value;
+        const now = new Date().toISOString()
         const options = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title, content }),
+          body: JSON.stringify({ title, content, now }),
         };
         fetch(`${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`, options)
           .then((response) => response.json())

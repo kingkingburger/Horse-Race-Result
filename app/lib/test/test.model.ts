@@ -12,6 +12,9 @@ export const TestSchema = new Schema({
     type: String,
     required: true,
   },
+  createdAt: {
+    type: Date
+  }
 });
 
 const Test = models?.Test || mongoose.model("Test", TestSchema);
