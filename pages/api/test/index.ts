@@ -7,8 +7,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("req = ", req.query);
-  if (req.method === "GET" && req.query.testId) {
+  console.log("req = ", req.query, req.query?.testId);
+  if (req.method === "GET" && req.query?.testId) {
     try {
       dbConnect();
       const tests = Test;
@@ -30,7 +30,7 @@ export default async function handler(
     try {
       dbConnect();
       const tests = Test;
-
+      console.log('GET 메서드 동작')
       const allTests = await tests.find();
 
       res.status(200).json(allTests);
@@ -42,11 +42,12 @@ export default async function handler(
     try {
       dbConnect();
       const tests = Test;
-      const { title, content } = req.body;
+      const { title, content, now } = req.body;
       const testId = await getNextSequenceValue("testId");
-      const test = new tests({ testId, title, content });
-      await test.save();
-      res.status(200).json({ message: "Test created successfully" });
+      const createdAt = new Date();
+      const test = new tests({ testId, title, content, createdAt });
+      const result = await test.save();
+      res.status(200).json({ message: "Test created successfully", data: result });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });

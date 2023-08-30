@@ -22,13 +22,12 @@ export default function Create() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title, content, now }),
+          body: JSON.stringify({ title, content }),
         };
         fetch(`${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`, options)
           .then((response) => response.json())
           .then((result) => {
-            console.log(result);
-            const lastId = result.testId;
+            const lastId = result.data.testId;
             router.refresh();
             router.push(`/read/${lastId}`);
           });
