@@ -23,15 +23,15 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw the border (gray circle)
-        context.strokeStyle = 'gray';
-        context.lineWidth = 4;
+        context.strokeStyle = 'white';
+        context.lineWidth = 10;
         context.beginPath();
         context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
         context.stroke();
 
         // Draw the progress arc
-        context.strokeStyle = 'white';
-        context.lineWidth = 4;
+        context.strokeStyle = 'black';
+        context.lineWidth = 10;
         context.beginPath();
         context.arc(centerX, centerY, radius, startAngle, endAngle);
         context.stroke();

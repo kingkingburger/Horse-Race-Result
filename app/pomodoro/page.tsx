@@ -19,7 +19,8 @@ export default function Pomodoro() {
     }, [time]);
 
     return (
-        <div className="flex justify-center">
+
+        <div className={`flex justify-center h-screen ${styles.background}`}>
             <div className={styles.mainContent}>
                 It`s a Pomodoro timer. I work for 25 minutes and take a five-minute
                 break
