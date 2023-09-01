@@ -45,18 +45,22 @@ export default function Board() {
                 <div className="text-right mb-1">
                     <Link href="/create" className="rounded border-1 border-gray-500 p-2">글쓰기</Link>
                 </div>
+                <div className="flex">
+                    <div className="w-3/12">숫자</div>
+                    <div className="w-6/12">제목</div>
+                    <div className="w-3/12">날짜</div>
+                </div>
                 <ul>
                     {topics.map((topic: topic, index: number) => (
-                        <li className="border-t-1 border-b-1 border-gray-500" key={topic.testId}>
+                        <li className="mt-3" key={topic.testId}>
                             <div className="flex">
-                                <div className="col-auto">
-                                    <button className="" onClick={() => handleLinkClick(topic)}>
-                                        {index + 1}. {topic.title}
+                                <div className="w-3/12">{index + 1}</div>
+                                <div className="w-6/12">
+                                    <button onClick={() => handleLinkClick(topic)}>
+                                        {topic.title}
                                     </button>
                                 </div>
-                            </div>
-                            <div className="mx-3 text-small">
-                                {getTimeDiff(dayjs(topic.createdAt))}
+                                <div className="w-3/12">{getTimeDiff(dayjs(topic.createdAt))}</div>
                             </div>
                         </li>
                     ))}
