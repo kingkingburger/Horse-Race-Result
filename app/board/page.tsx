@@ -2,10 +2,13 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {Link} from "@nextui-org/react";
+import {getTimeDiff} from "@/app/board/getTimeDiff";
+import dayjs, {Dayjs} from "dayjs";
 
 interface topic {
     testId: number;
     title: string;
+    createdAt: Date;
 }
 
 export default function Board() {
@@ -39,15 +42,20 @@ export default function Board() {
     return (
         <div>
             <Link href="/create">게시판 생성하기</Link>
-            <div className="flex justify-center mt-3 w-full sm:w-1/2">
+            <div className="mx-auto mt-3 w-full sm:w-1/2">
                 <ul>
                     {topics.map((topic: topic, index: number) => (
-                        <li key={topic.testId}>
-                            {/*<div className="w-full sm:w-1/2">*/}
-                            <button className="" onClick={() => handleLinkClick(topic)}>
-                                {index + 1}. {topic.title}
-                            </button>
-                            {/*</div>*/}
+                        <li className="" key={topic.testId}>
+                            <div className="flex">
+                                <div className="col-auto">
+                                    <button className="" onClick={() => handleLinkClick(topic)}>
+                                        {index + 1}. {topic.title}
+                                    </button>
+                                </div>
+                                <div className="mx-3">
+                                    {getTimeDiff(dayjs(topic.createdAt))}
+                                </div>
+                            </div>
                         </li>
                     ))}
                 </ul>
