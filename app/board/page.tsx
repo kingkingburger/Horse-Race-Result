@@ -45,16 +45,16 @@ export default function Board() {
             <div className="mx-auto mt-3 w-full sm:w-1/2">
                 <ul>
                     {topics.map((topic: topic, index: number) => (
-                        <li className="" key={topic.testId}>
+                        <li className="border-t-1 border-b-1 border-gray-500" key={topic.testId}>
                             <div className="flex">
                                 <div className="col-auto">
                                     <button className="" onClick={() => handleLinkClick(topic)}>
                                         {index + 1}. {topic.title}
                                     </button>
                                 </div>
-                                <div className="mx-3">
-                                    {getTimeDiff(dayjs(topic.createdAt))}
-                                </div>
+                            </div>
+                            <div className="mx-3 text-small">
+                                {getTimeDiff(dayjs(topic.createdAt))}
                             </div>
                         </li>
                     ))}
