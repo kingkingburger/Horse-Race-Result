@@ -41,8 +41,10 @@ export default function Board() {
 
     return (
         <div>
-            <Link href="/create">게시판 생성하기</Link>
             <div className="mx-auto mt-3 w-full sm:w-1/2">
+                <div className="text-right mb-1">
+                    <Link href="/create" className="rounded border-1 border-gray-500 p-2">글쓰기</Link>
+                </div>
                 <ul>
                     {topics.map((topic: topic, index: number) => (
                         <li className="border-t-1 border-b-1 border-gray-500" key={topic.testId}>
