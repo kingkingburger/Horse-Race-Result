@@ -1,7 +1,44 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import { getTimeDiff } from "@/app/board/getTimeDiff";
+import dayjs from "dayjs";
+
+interface topic {
+  testId: number;
+  title: string;
+  createdAt: Date;
+}
 
 export default function Card4() {
+  const router = useRouter();
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    async function fetchTopics() {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_MONGO_API_URL}/api/test`,
+          {
+            cache: "no-store",
+          }
+        );
+        const fetchedTopics = await response.json();
+        console.log("fetchedTopics = ", fetchedTopics);
+        setTopics(fetchedTopics);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    fetchTopics();
+  }, []);
+
+  const handleLinkClick = (topic: topic) => {
+    router.push(`/read/${topic.testId}`);
+  };
+
   const list = [
     {
       title: "Orange",
@@ -68,6 +105,28 @@ export default function Card4() {
             <b>{item.title}</b>
             <p className="text-default-500">{item.price}</p>
           </CardFooter>
+        </Card>
+      ))}
+      {topics.map((topic: topic, index: number) => (
+        <Card
+          shadow="sm"
+          key={index}
+          isPressable
+          onPress={() => console.log("item pressed")}
+        >
+          <CardBody className="overflow-visible p-0">
+            <div className="flex">
+              <div className="w-3/12">{index + 1}</div>
+              <div className="w-6/12">
+                <button onClick={() => handleLinkClick(topic)}>
+                  {topic.title}
+                </button>
+              </div>
+              <div className="w-3/12">
+                {getTimeDiff(dayjs(topic.createdAt))}
+              </div>
+            </div>
+          </CardBody>
         </Card>
       ))}
     </div>
