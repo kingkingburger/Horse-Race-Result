@@ -26,6 +26,7 @@ export default async function Layout({ children }: PropsWithChildren) {
       <body>
         <div className="navbar">
           <Link href="/">홈</Link>
+          <Link href="/horse">말들</Link>
           <Link href="/list">List</Link>
           <Link href="/custom">Custom</Link>
           <Link href="/pomodoro">Pomodoro</Link>
