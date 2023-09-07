@@ -48,15 +48,13 @@ export default function Board() {
           </Link>
         </div>
         <div className="flex">
-          <div className="w-3/12">숫자</div>
           <div className="w-6/12">제목</div>
           <div className="w-3/12">날짜</div>
         </div>
         <ul>
           {topics.map((topic: topic, index: number) => (
-            <li className="mt-3" key={topic.testId}>
+            <li className="p-3 border-t-2" key={topic.testId}>
               <div className="flex">
-                <div className="w-3/12">{index + 1}</div>
                 <div className="w-6/12">
                   <button onClick={() => handleLinkClick(topic)}>
                     {topic.title}
