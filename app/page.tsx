@@ -42,6 +42,7 @@ export default function Board() {
   return (
     <div>
       <div className="mx-auto mt-3 w-full sm:w-1/2">
+        오늘의 글감:
         <div className="text-right mb-1">
           <Link href="/create" className="rounded border-1 border-gray-500 p-2">
             글쓰기
