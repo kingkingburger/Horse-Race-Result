@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Link } from "@nextui-org/react";
 import { getTimeDiff } from "@/app/board/getTimeDiff";
 import dayjs, { Dayjs } from "dayjs";
-
+import Parser from "rss-parser";
 interface topic {
   testId: number;
   title: string;
@@ -14,7 +14,9 @@ interface topic {
 export default function Board() {
   const router = useRouter();
   const [topics, setTopics] = useState([]);
+  const [feed, setFeed] = useState("");
 
+  const parser = new Parser();
   useEffect(() => {
     async function fetchTopics() {
       try {
@@ -26,6 +28,7 @@ export default function Board() {
         );
         const fetchedTopics = await response.json();
         console.log("fetchedTopics = ", fetchedTopics);
+
         setTopics(fetchedTopics);
       } catch (e) {
         console.error(e);
