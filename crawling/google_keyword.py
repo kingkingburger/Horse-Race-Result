@@ -14,8 +14,9 @@ result_list = []
 for entry in feed.entries:
     title = entry.title
     news_item_title = entry.get("ht_news_item_title", "N/A")
+    link = entry.link
 
-    result_list.append({"Title": title, "ht:news_item_title": news_item_title})
+    result_list.append({"title": title, "news_title": news_item_title, 'link': link})
 
 # JSON 형식으로 결과를 파일에 저장
 with open("todayResult.json", "w", encoding="utf-8") as json_file:
