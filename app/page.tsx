@@ -26,7 +26,7 @@ export default function Board() {
   // const [recommendNews, setRecommendNews] = useState("");
   // const [recommendLink, setRecommendLink] = useState("");
 
-  const parser = new Parser();
+
   useEffect(() => {
     async function fetchTopics() {
       try {
