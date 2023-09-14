@@ -11,10 +11,20 @@ interface topic {
   createdAt: Date;
 }
 
+interface recommend {
+  Title: string;
+  news_title: string;
+  link: string;
+}
+
 export default function Board() {
   const router = useRouter();
   const [topics, setTopics] = useState([]);
   const [feed, setFeed] = useState("");
+  const [recommend, setRecommend] = useState<recommend[]>([]);
+  const [recommendTitle, setRecommendTitle] = useState("");
+  // const [recommendNews, setRecommendNews] = useState("");
+  // const [recommendLink, setRecommendLink] = useState("");
 
   const parser = new Parser();
   useEffect(() => {
@@ -26,8 +36,21 @@ export default function Board() {
             cache: "no-store",
           }
         );
+        const recommend = await fetch(`http://localhost:3001/api/readFile`, {
+          cache: "no-store",
+        });
+
         const fetchedTopics = await response.json();
-        console.log("fetchedTopics = ", fetchedTopics);
+
+        const recommendJson = await recommend.json();
+        console.log("recommendJson.data = ", recommendJson.data);
+        const recommendArray: recommend[] = recommendJson.data;
+        setRecommend(recommendJson.data);
+        for (const recommendArrayElement of recommendArray) {
+          setRecommendTitle(recommendArrayElement.Title);
+          // setRecommendNews(recommendArrayElement.news_title);
+          // setRecommendLink(recommendArrayElement.link);
+        }
 
         setTopics(fetchedTopics);
       } catch (e) {
@@ -46,6 +69,10 @@ export default function Board() {
     <div>
       <div className="mx-auto mt-3 w-full sm:w-1/2">
         오늘의 글감:
+        {/*{recommend.map((item: recommend) => (*/}
+        {/*  <div key={item.link}>{item.Title}</div>*/}
+        {/*))}*/}
+        {recommend}
         <div className="text-right mb-1">
           <Link href="/create" className="rounded border-1 border-gray-500 p-2">
             글쓰기
