@@ -12,7 +12,7 @@ interface topic {
 }
 
 interface recommend {
-  Title: string;
+  title: string;
   news_title: string;
   link: string;
 }
@@ -22,10 +22,9 @@ export default function Board() {
   const [topics, setTopics] = useState([]);
   const [feed, setFeed] = useState("");
   const [recommend, setRecommend] = useState<recommend[]>([]);
-  const [recommendTitle, setRecommendTitle] = useState("");
-  // const [recommendNews, setRecommendNews] = useState("");
-  // const [recommendLink, setRecommendLink] = useState("");
-
+  const [recommendTitle, setRecommendTitle] = useState([""]);
+  const [recommendNews, setRecommendNews] = useState([""]);
+  const [recommendLink, setRecommendLink] = useState([""]);
 
   useEffect(() => {
     async function fetchTopics() {
@@ -43,11 +42,14 @@ export default function Board() {
         const fetchedTopics = await response.json();
 
         const recommendJson = await recommend.json();
-        console.log("recommendJson.data = ", recommendJson.data);
-        const recommendArray: recommend[] = recommendJson.data;
-        setRecommend(recommendJson.data);
+        const recommendArray: recommend[] = JSON.parse(recommendJson.data);
+        console.log("recommendJson = ", recommendArray);
+        setRecommend(recommendArray);
+
         for (const recommendArrayElement of recommendArray) {
-          setRecommendTitle(recommendArrayElement.Title);
+          console.log("recommendArrayElement = ", recommendArrayElement.title);
+          // console.log("recommendArrayElement.Title = ", recommendArrayElement);
+          // setRecommendTitle(recommendArrayElement.title);
           // setRecommendNews(recommendArrayElement.news_title);
           // setRecommendLink(recommendArrayElement.link);
         }
@@ -67,37 +69,45 @@ export default function Board() {
 
   return (
     <div>
-      <div className="mx-auto mt-3 w-full sm:w-1/2">
-        오늘의 글감:
-        {/*{recommend.map((item: recommend) => (*/}
-        {/*  <div key={item.link}>{item.Title}</div>*/}
-        {/*))}*/}
-        {recommend}
-        <div className="text-right mb-1">
-          <Link href="/create" className="rounded border-1 border-gray-500 p-2">
-            글쓰기
-          </Link>
-        </div>
-        <div className="flex">
-          <div className="w-6/12">제목</div>
-          <div className="w-3/12">날짜</div>
-        </div>
-        <ul>
-          {topics.map((topic: topic, index: number) => (
-            <li className="p-3 border-t-2" key={topic.testId}>
-              <div className="flex">
-                <div className="w-6/12">
-                  <button onClick={() => handleLinkClick(topic)}>
-                    {topic.title}
-                  </button>
-                </div>
-                <div className="w-3/12">
-                  {getTimeDiff(dayjs(topic.createdAt))}
-                </div>
+      <div className="text-right mb-1 col-auto">
+        <Link href="/create" className="rounded border-1 border-gray-500 p-2">
+          글쓰기
+        </Link>
+      </div>
+      <div className="mt-3  flex">
+        <div className="col-auto">
+          오늘의 글감:
+          {recommend.map((v, index) => {
+            return (
+              <div key={index}>
+                <div>제목: {v.title}</div>
+                <Link href={v.link}>뉴스 제목: {v.news_title}</Link>
               </div>
-            </li>
-          ))}
-        </ul>
+            );
+          })}
+        </div>
+        <div className="col-auto">
+          <div className="flex">
+            <div className="col-auto mx-4">제목</div>
+            <div className="col-auto">날짜</div>
+          </div>
+          <ul>
+            {topics.map((topic: topic, index: number) => (
+              <li className="p-3 border-t-2" key={topic.testId}>
+                <div className="flex">
+                  <div className="col-auto mx-4">
+                    <button onClick={() => handleLinkClick(topic)}>
+                      {topic.title}
+                    </button>
+                  </div>
+                  <div className="col-auto">
+                    {getTimeDiff(dayjs(topic.createdAt))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
